@@ -1,0 +1,21 @@
+.socialSection_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25rem;
+  text-align: center;
+}
+
+.socialSection_wrapper img {
+  width: 58px;
+  height: 58px;
+  border-radius: 100%;
+}
+
+.socials-gap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 14px;
+}

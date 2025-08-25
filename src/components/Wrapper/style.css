@@ -1,0 +1,8 @@
+.bunner-header_wrapper {
+  background-image: url("../../assets/bg/headerBg.jpg");
+  /* background-position: bottom; */
+  background-position-y: -270px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+

@@ -1,0 +1,34 @@
+.agent_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 100px;
+}
+
+.agent-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 20rem;
+}
+
+.agent-text > div {
+  text-align: center;
+  width: 120%;
+}
+
+.agent-text > div p,
+span {
+  margin-top: 0;
+}
+
+.agent-text > div span {
+  color: #fff;
+  text-align: center;
+  font-family: "Tachyon W00 Regular";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

@@ -1,0 +1,80 @@
+.arcadeSections-wrapper {
+  background-image: url("../../assets/bg/bg3.png");
+  background-position-y: -200px;
+  background-size: cover;
+  padding-top: 150px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 20rem;
+  padding-bottom: 30px;
+  position: relative;
+}
+
+.arcadeSections-wrapper::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 980px;
+  height: 400px;
+  background: url("../../assets/bg/bg2.png") center -550px / cover no-repeat;
+  z-index: 0;
+  inset: 1;
+}
+
+.arcade-video {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arcade-video > img {
+  width: 253px;
+}
+
+.text-button {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.text-button > button {
+  display: flex;
+  width: 200px;
+  padding: 16px 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border-radius: 30px;
+  border: none;
+  background: var(--900, #1a1b1f);
+  cursor: pointer;
+}
+
+.video-laptop {
+  background-image: url("../../assets/images/laptop.png");
+  width: 45%;
+  height: 580px;
+  background-size: cover;
+  display: flex;
+}
+
+.video-laptop > video {
+  width: 100%;
+  position: relative;
+  top: 0%;
+  left: 10%;
+  transform: translate(1.5%, -3%);
+}
+
+.carousel-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}

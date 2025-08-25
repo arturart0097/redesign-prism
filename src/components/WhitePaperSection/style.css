@@ -1,0 +1,46 @@
+.whitepaper_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.whitepaper_wrapper > img {
+  width: 195px;
+}
+
+.whitepaperBg {
+  background-image: url("../../assets/bg/bg3.png");
+  background-position-y: -100px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;    
+}
+
+.whitepaperBg > button {
+  display: flex;
+  width: 200px;
+  padding: 16px 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border-radius: 30px;
+  background: var(--900, #1a1b1f);
+  border: none;
+  color: var(--100, #fff);
+  text-align: center;
+
+  /* Prism/Button */
+  font-family: Outfit;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+  text-transform: uppercase;
+}
