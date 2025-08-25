@@ -37,7 +37,7 @@ export const ArcadeSections = () => {
         className="blur-row"
         style={{
           position: "relative",
-          top: 20,
+          top: 50,
           height: 60,
         }}
       />

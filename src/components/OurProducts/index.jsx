@@ -53,9 +53,6 @@ export const OurProducts = () => {
         </div>
         <div className="bunner-bg2"></div>
       </div>
-      <div className="blur-row" style={{
-        height: 30
-      }} />
     </>
   );
 };

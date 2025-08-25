@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { SocialLinks } from "../UI/SocialLinks";
+import { socialLinks } from "@/entities/socialLinks";
 import arrow from "../../assets/icons/arrow.svg";
 import bridgeIcon from "../../assets/images/bridgeIcons.png";
 import claimReward from "../../assets/images/claimReward.png";
@@ -20,12 +23,44 @@ import mintify from "../../assets/images/mintify.png";
 import magic from "../../assets/images/magic.png";
 
 export default function Nav({ open, onClose }) {
+  const [isMobile, setIsMobile] = useState(false);
+  const [expanded, setExpanded] = useState({
+    duel: false,
+    nfts: false,
+    learn: false,
+    other: false,
+  });
+
+  useEffect(() => {
+    const update = () => setIsMobile(window.innerWidth <= 900);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  const toggle = (key) => {
+    if (!isMobile) return;
+    setExpanded((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
   return (
     <nav id="primary-nav" className={`header__nav ${open ? "is-open" : ""}`}>
       <div className="nav__inner">
         <ul className="nav__list" role="list">
-          <li className="nav__item has-submenu">
-            <Link to="/duel" onClick={onClose} className="nav__link">
+          <li className={`nav__item has-submenu ${expanded.duel ? "is-expanded" : ""}`}>
+            <Link
+              to="/duel"
+              onClick={(e) => {
+                if (isMobile) {
+                  e.preventDefault();
+                  toggle("duel");
+                } else {
+                  onClose();
+                }
+              }}
+              aria-expanded={isMobile ? expanded.duel : undefined}
+              className="nav__link"
+            >
               Trade DUEL <img src={arrow} alt="navArrow" />
             </Link>
             <ul className="submenu" role="menu" aria-label="Other links">
@@ -61,8 +96,20 @@ export default function Nav({ open, onClose }) {
               </li>
             </ul>
           </li>
-          <li className="nav__item has-submenu">
-            <Link to="/team" onClick={onClose} className="nav__link">
+          <li className={`nav__item has-submenu ${expanded.nfts ? "is-expanded" : ""}`}>
+            <Link
+              to="/team"
+              onClick={(e) => {
+                if (isMobile) {
+                  e.preventDefault();
+                  toggle("nfts");
+                } else {
+                  onClose();
+                }
+              }}
+              aria-expanded={isMobile ? expanded.nfts : undefined}
+              className="nav__link"
+            >
               Trade NFTs <img src={arrow} alt="navArrow" />
             </Link>
             <ul className="submenu" role="menu" aria-label="Other links">
@@ -83,8 +130,20 @@ export default function Nav({ open, onClose }) {
               </li>
             </ul>
           </li>
-          <li className="nav__item has-submenu">
-            <Link to="/docs" onClick={onClose} className="nav__link">
+          <li className={`nav__item has-submenu ${expanded.learn ? "is-expanded" : ""}`}>
+            <Link
+              to="/docs"
+              onClick={(e) => {
+                if (isMobile) {
+                  e.preventDefault();
+                  toggle("learn");
+                } else {
+                  onClose();
+                }
+              }}
+              aria-expanded={isMobile ? expanded.learn : undefined}
+              className="nav__link"
+            >
               Learn More <img src={arrow} alt="navArrow" />
             </Link>
             <ul className="submenu" role="menu" aria-label="Other links">
@@ -120,8 +179,20 @@ export default function Nav({ open, onClose }) {
               </li>
             </ul>
           </li>
-          <li className="nav__item has-submenu">
-            <Link to="/bridge" onClick={onClose} className="nav__link">
+          <li className={`nav__item has-submenu ${expanded.other ? "is-expanded" : ""}`}>
+            <Link
+              to="/bridge"
+              onClick={(e) => {
+                if (isMobile) {
+                  e.preventDefault();
+                  toggle("other");
+                } else {
+                  onClose();
+                }
+              }}
+              aria-expanded={isMobile ? expanded.other : undefined}
+              className="nav__link"
+            >
               Other <img src={arrow} alt="navArrow" />
             </Link>
             <ul className="submenu" role="menu" aria-label="Other links">
@@ -148,6 +219,15 @@ export default function Nav({ open, onClose }) {
             </ul>
           </li>
         </ul>
+        {/* Mobile-only social actions inside menu */}
+        <div className="nav__social-wrap">
+          <SocialLinks links={socialLinks} />
+          <ul className="nav__social" role="list">
+            <li>
+              <button className="connect-button" onClick={onClose}>Connect</button>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   );

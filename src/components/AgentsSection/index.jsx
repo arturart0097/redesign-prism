@@ -32,13 +32,13 @@ export const AgentsSection = () => {
             </p>
           </div>
         </div>
-        <div>
+        <div className="agent-image">
           <img src={agentsSection} alt="" />
           <div
             className="blur-row"
             style={{
               position: "relative",
-              top: -40,
+              top: -30,
               height: 60,
             }}
           />

@@ -1,82 +1,133 @@
+/* === GameGptSection — adaptive CSS === */
+
 .gameGptSection-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  margin-top: clamp(80px, 12vw, 200px);
+  padding-inline: 16px;
 }
 
-.gameGptSection-wrapper img {
-  width: 300px;
-}
-
-.gameGptSection-wrapper h2 {
-  margin-top: 0;
-}
-
+/* логотип + назва */
 .gameGptSection-logo {
   text-align: center;
 }
-
-.gameCard-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  width: 90%;
-  margin: auto;
+.gameGptSection-logo img {
+  width: clamp(140px, 28vw, 300px);
+  height: auto;
+  display: block;
+  margin-inline: auto;
+}
+.gameGptSection-wrapper h2 {
+  margin-top: 8px; /* було 0 */
 }
 
-.gameCard-wrapper div {
-  margin-top: 30px;
-  display: flex;
-  height: 88px;
-  padding: 16px 24px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 91px;
-  flex: 1 0 0;
-  border-radius: 16px;
-  border: 1px solid #393939;
-  background: rgba(73, 73, 73, 0.4);
-  backdrop-filter: blur(50px);
-}
-
+/* секція з фоном */
 .gameBuilder-section {
   width: 100%;
   background-image: url("../../assets/bg/gameBg.png");
   background-size: cover;
-  /* background-position-y: -350px; */
-  box-shadow: 0 776px 217px 0 rgba(0, 0, 0, 0),
-    0 497px 199px 0 rgba(0, 0, 0, 0.01), 0 279px 168px 0 rgba(0, 0, 0, 0.05),
-    0 124px 124px 0 rgba(0, 0, 0, 0.09), 0 31px 68px 0 rgba(0, 0, 0, 0.1);
-  padding-top: 30px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* вимкнемо на мобайлі нижче */
+  box-shadow:
+    0 776px 217px 0 rgba(0, 0, 0, 0),
+    0 497px 199px 0 rgba(0, 0, 0, 0.01),
+    0 279px 168px 0 rgba(0, 0, 0, 0.05),
+    0 124px 124px 0 rgba(0, 0, 0, 0.09),
+    0 31px 68px 0 rgba(0, 0, 0, 0.1);
+  padding: clamp(24px, 4vw, 60px) 0 clamp(48px, 6vw, 90px);
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding-bottom: 70px;
-  background-attachment: fixed;
+  gap: 12px;
 }
 
-.gameBuilder-section > button {
-  margin-top: 30px;
+/* картки-бенефіти */
+.gameCard-wrapper {
+  width: min(1100px, 100%);
+  margin: 12px auto 0;
+  display: grid;
+  grid-template-columns: 1fr;            /* мобайл: одна колонка */
+  gap: 12px;
+  padding-inline: 8px;
+}
+@media (min-width: 640px) {
+  .gameCard-wrapper { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 960px) {
+  .gameCard-wrapper { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.gameCard-wrapper div {
   display: flex;
-  padding: 10px 20px;
-  justify-content: center;
   align-items: center;
-  gap: 4px;
-  border-radius: 30px;
-  border: none;
-  background: var(--CTA, linear-gradient(60deg, #f094fa 13.4%, #f5576e 86.6%));
-  color: var(--900, #1a1b1f);
+  justify-content: center;
   text-align: center;
 
-  /* Prism/Headline 1 */
-  font-family: Outfit;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 24px; /* 150% */
+  /* прибрав жорсткі висоти/гігантський gap */
+  min-height: 84px;
+  padding: 14px 16px;
+  gap: 8px;
+
+  border-radius: 16px;
+  border: 1px solid #393939;
+  background: rgba(73, 73, 73, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  font-size: clamp(14px, 1.6vw, 16px);
+  line-height: 1.45;
+
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.gameCard-wrapper div:hover,
+.gameCard-wrapper div:focus-within {
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,0.25);
+  box-shadow: 0 12px 28px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.04);
+}
+
+/* кнопка */
+.gameBuilder-section > button {
+  margin-top: 18px;
+  padding: clamp(10px, 1.2vw, 12px) clamp(16px, 2vw, 22px);
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(60deg, #f094fa 13.4%, #f5576e 86.6%);
+  color: #1a1b1f;
+  font-family: Outfit, system-ui, sans-serif;
+  font-size: clamp(14px, 1.8vw, 16px);
+  font-weight: 600;
+  line-height: 1;
   cursor: pointer;
+  transition: transform .15s ease, box-shadow .2s ease, opacity .2s ease;
+}
+.gameBuilder-section > button:hover,
+.gameBuilder-section > button:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(245, 87, 110, 0.35);
+  outline: none;
+}
+.gameBuilder-section > button:active {
+  transform: translateY(0);
+  opacity: .9;
+}
+
+/* фон з фіксованим аттачментом дає лаги на мобілках — вимикаємо */
+@media (max-width: 1024px) {
+  .gameBuilder-section { background-attachment: scroll; }
+}
+
+/* дуже вузькі екрани */
+@media (max-width: 380px) {
+  .gameGptSection-wrapper { padding-inline: 12px; }
+  .gameCard-wrapper { gap: 10px; }
+  .gameCard-wrapper div { padding: 12px 14px; }
+}
+
+/* повага до reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .gameCard-wrapper div,
+  .gameBuilder-section > button { transition: none; }
 }

@@ -32,3 +32,73 @@ span {
   font-weight: 400;
   line-height: normal;
 }
+
+/* Ensure images scale within the section */
+.agent_wrapper img {
+  max-width: 100%;
+  height: auto;
+}
+
+.agent-image {
+  margin-top: 80px;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .agent-text {
+    margin-left: 10rem;
+  }
+
+  .agent-text > div {
+    width: 100%;
+  }
+}
+
+@media (max-width: 992px) {
+  .agent_wrapper {
+    gap: 24px;
+    padding-bottom: 80px;
+  }
+
+  .agent-text {
+    margin-left: 4rem;
+  }
+
+  .agent-text > div span {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .agent_wrapper {
+    flex-direction: column;
+    padding-bottom: 60px;
+  }
+
+  .agent-text {
+    margin-left: 0;
+    padding-inline: 16px;
+  }
+
+  .agent-text > div {
+    width: 100%;
+  }
+
+  .agent-text > div span {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .agent_wrapper {
+    padding-bottom: 40px;
+  }
+
+  .agent-text {
+    padding-inline: 12px;
+  }
+
+  .agent-text > div span {
+    font-size: 18px;
+  }
+}
