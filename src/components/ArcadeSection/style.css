@@ -9,6 +9,7 @@
   padding-left: 20rem;
   padding-bottom: 30px;
   position: relative;
+  background-repeat: no-repeat;
 }
 
 .arcadeSections-wrapper::before {
@@ -169,6 +170,7 @@
   .arcadeSections-wrapper {
     padding-top: 60px;
     gap: 12px;
+    background-position: center;
   }
 
   .arcade-video > img {
@@ -186,10 +188,165 @@
   }
 
   .video-laptop {
-    height: 300px;
+    height: 500px;
+    background-position: center;
+    background-size: 90%;
+    background-repeat: no-repeat;
+    position: relative;
+    left: 30px;
+    padding-bottom: 27px;
+  }
+
+  .video-laptop video {
+    width: 90%;
+    position: relative;
+    left: 15.3%;
+  }
+
+  .carousel-section {
+    background-image: url("../../assets/bg/bg2.png");
+    background-position: center left;
+    background-repeat: no-repeat;
+  }
+
+  .arcadeSections-wrapper::before {
+    background-image: none;
   }
 
   .carousel-section {
     padding: 24px 12px;
+  }
+}
+
+/* Tablet and small laptop refinements (do not alter <=480px and >=1200px) */
+@media (min-width: 481px) and (max-width: 639px) {
+  .arcadeSections-wrapper {
+    padding-top: 80px;
+    padding-left: 0;
+    gap: 18px;
+    background-position: center;
+  }
+
+  .arcade-video > img {
+    width: 190px;
+  }
+
+  .text-button h2 {
+    font-size: 28px;
+  }
+
+  .text-button > button {
+    width: 165px;
+    padding: 12px 22px;
+  }
+
+  .video-laptop {
+    width: 100%;
+    height: 360px;
+    background-position: center;
+  }
+
+  .carousel-section {
+    padding: 28px 14px;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .arcadeSections-wrapper {
+    padding-top: 90px;
+    padding-left: 0;
+    gap: 20px;
+    background-position: center;
+  }
+
+  .arcade-video > img {
+    width: 200px;
+  }
+
+  .text-button h2 {
+    font-size: 30px;
+  }
+
+  .text-button > button {
+    width: 170px;
+    padding: 12px 24px;
+  }
+
+  .video-laptop {
+    width: 100%;
+    height: 380px;
+    background-position: center;
+  }
+
+  .carousel-section {
+    padding: 30px 16px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 899px) {
+  .arcadeSections-wrapper {
+    padding-left: 2rem;
+    padding-top: 100px;
+    gap: 20px;
+  }
+
+  .arcade-video > img {
+    width: 210px;
+  }
+
+  .text-button h2 {
+    font-size: 34px;
+  }
+
+  .video-laptop {
+    width: 60%;
+    height: 420px;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 991px) {
+  .arcadeSections-wrapper {
+    padding-left: 4rem;
+    padding-top: 110px;
+    gap: 20px;
+  }
+
+  .arcade-video > img {
+    width: 215px;
+  }
+
+  .text-button h2 {
+    font-size: 36px;
+  }
+
+  .video-laptop {
+    width: 58%;
+    height: 440px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .arcadeSections-wrapper {
+    padding-left: 8rem;
+    padding-top: 130px;
+    gap: 22px;
+  }
+
+  .arcade-video > img {
+    width: 225px;
+  }
+
+  .text-button h2 {
+    font-size: 38px;
+  }
+
+  .text-button > button {
+    width: 185px;
+    padding: 14px 28px;
+  }
+
+  .video-laptop {
+    width: 52%;
+    height: 500px;
   }
 }

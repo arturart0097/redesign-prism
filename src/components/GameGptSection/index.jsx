@@ -1,8 +1,11 @@
 import gameGptLogo from "@/assets/images/gameLogo.png";
 
 import "./style.css";
+import { useMobile } from "@/hooks/useMobile";
 
 export const GameGptSection = () => {
+  const { isMobile } = useMobile();
+
   return (
     <div className="gameGptSection-wrapper">
       <div className="gameGptSection-logo">
@@ -32,14 +35,16 @@ export const GameGptSection = () => {
         </div>
         <button>Discover the power of $DUEL token</button>
       </div>
-      <div
-        className="blur-row"
-        style={{
-          position: "relative",
-          top: -30,
-          height: 40,
-        }}
-      />
+      {!isMobile && (
+        <div
+          className="blur-row"
+          style={{
+            position: "relative",
+            top: -30,
+            height: 40,
+          }}
+        />
+      )}
     </div>
   );
 };

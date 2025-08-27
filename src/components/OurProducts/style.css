@@ -21,16 +21,24 @@
   pointer-events: none;
 }
 
+.products-wrapper h2 {
+  z-index: 10;
+  position: relative;
+}
+
 /* cards layout: grid з auto-fit */
 .products {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  /* display: grid; */
+  /* grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 16px;
   max-width: 1200px;
   margin: 0 auto;
-  justify-items: center;
+  /* justify-items: center; */
 }
 
 /* card */
@@ -87,15 +95,22 @@
 @media (max-width: 480px) {
   .products-wrapper {
     padding: 64px 12px 40px;
-    background-position: center -120px;
+    background-position-y: -20px;
   }
+
+  .products-wrapper::before {
+    top: 10px;
+    background-position-y: 40px;
+    z-index: 0;
+  }
+
   .products {
     gap: 12px;
   }
   .products-video {
     border-radius: 18px;
-    padding: 16px 14px;
-    width: 60%;
+    padding: 16px 18px;
+    width: 20%;
   }
 }
 

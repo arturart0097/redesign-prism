@@ -21,7 +21,7 @@
 
 @media (max-width: 768px) {
   .bunner-header_wrapper {
-    background-image: url("../../assets/bg/bgmobile.png");
+    background-image: url("../../assets/bg/headerBg.jpg");
     background-position: center top;
     background-size: cover;
   }
@@ -29,6 +29,6 @@
 
 @media (max-width: 480px) {
   .bunner-header_wrapper {
-    background-position: left;
+    background-position: left center;
   }
 }

@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { SocialLinks } from "../UI/SocialLinks";
-import { socialLinks } from "@/entities/socialLinks";
+import { useState } from "react";
 import arrow from "../../assets/icons/arrow.svg";
 import bridgeIcon from "../../assets/images/bridgeIcons.png";
 import claimReward from "../../assets/images/claimReward.png";
@@ -21,22 +19,16 @@ import mexc from "../../assets/images/mexc.png";
 import opensea from "../../assets/images/opensea.png";
 import mintify from "../../assets/images/mintify.png";
 import magic from "../../assets/images/magic.png";
+import { useMobile } from "@/hooks/useMobile";
 
 export default function Nav({ open, onClose }) {
-  const [isMobile, setIsMobile] = useState(false);
+  const { isMobile } = useMobile();
   const [expanded, setExpanded] = useState({
     duel: false,
     nfts: false,
     learn: false,
     other: false,
   });
-
-  useEffect(() => {
-    const update = () => setIsMobile(window.innerWidth <= 900);
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
 
   const toggle = (key) => {
     if (!isMobile) return;
@@ -47,7 +39,11 @@ export default function Nav({ open, onClose }) {
     <nav id="primary-nav" className={`header__nav ${open ? "is-open" : ""}`}>
       <div className="nav__inner">
         <ul className="nav__list" role="list">
-          <li className={`nav__item has-submenu ${expanded.duel ? "is-expanded" : ""}`}>
+          <li
+            className={`nav__item has-submenu ${
+              expanded.duel ? "is-expanded" : ""
+            }`}
+          >
             <Link
               to="/duel"
               onClick={(e) => {
@@ -65,38 +61,72 @@ export default function Nav({ open, onClose }) {
             </Link>
             <ul className="submenu" role="menu" aria-label="Other links">
               <li role="none">
-                <Link role="menuitem" to="/docs" onClick={onClose} className="submenu__link">
+                <Link
+                  role="menuitem"
+                  to="https://app.uniswap.org/explore"
+                  onClick={onClose}
+                  className="submenu__link"
+                >
                   <img src={eth} alt="" /> $DUEL (ETH)
                 </Link>
               </li>
               <li role="none">
-                <Link role="menuitem" to="/tokenomics" onClick={onClose} className="submenu__link">
+                <Link
+                  role="menuitem"
+                  to="https://www.bybit.com/en/trade/spot/DUEL/USDT"
+                  onClick={onClose}
+                  className="submenu__link"
+                >
                   <img src={bybit} alt="" /> $DUEL ByBit
                 </Link>
               </li>
               <li role="none">
-                <Link role="menuitem" to="/team" onClick={onClose} className="submenu__link">
+                <Link
+                  role="menuitem"
+                  to="https://pancakeswap.finance/swap?outputCurrency=0xa1ED0bD9A4776830c5b7bA004F26427b71152CA5"
+                  onClick={onClose}
+                  className="submenu__link"
+                >
                   <img src={bcd} alt="" /> $DUEL (BSC)
                 </Link>
               </li>
               <li role="none">
-                <Link role="menuitem" to="/team" onClick={onClose} className="submenu__link">
+                <Link
+                  role="menuitem"
+                  to="https://www.gate.io/trade/DUEL_USDT"
+                  onClick={onClose}
+                  className="submenu__link"
+                >
                   <img src={gate} alt="" /> $DUEL Gate
                 </Link>
               </li>
               <li role="none">
-                <Link role="menuitem" to="/team" onClick={onClose} className="submenu__link">
+                <Link
+                  role="menuitem"
+                  to="https://app.uniswap.org/explore/tokens/base/0x16f1759fabbcc66d3f21eb8e4ad0d75b83a804e1"
+                  onClick={onClose}
+                  className="submenu__link"
+                >
                   <img src={abse} alt="" /> $DUEL (Base)
                 </Link>
               </li>
               <li role="none">
-                <Link role="menuitem" to="/team" onClick={onClose} className="submenu__link">
+                <Link
+                  role="menuitem"
+                  to="https://www.mexc.com/exchange/DUEL_USDT"
+                  onClick={onClose}
+                  className="submenu__link"
+                >
                   <img src={mexc} alt="" /> $DUEL MEXC
                 </Link>
               </li>
             </ul>
           </li>
-          <li className={`nav__item has-submenu ${expanded.nfts ? "is-expanded" : ""}`}>
+          <li
+            className={`nav__item has-submenu ${
+              expanded.nfts ? "is-expanded" : ""
+            }`}
+          >
             <Link
               to="/team"
               onClick={(e) => {
@@ -114,23 +144,42 @@ export default function Nav({ open, onClose }) {
             </Link>
             <ul className="submenu" role="menu" aria-label="Other links">
               <li role="none">
-                <Link role="menuitem" to="/docs" onClick={onClose} className="submenu__link">
+                <Link
+                  role="menuitem"
+                  to="https://opensea.io/collection/official-gamegpt-nft"
+                  onClick={onClose}
+                  className="submenu__link"
+                >
                   <img src={opensea} alt="" /> Opensea
                 </Link>
               </li>
               <li role="none">
-                <Link role="menuitem" to="/tokenomics" onClick={onClose} className="submenu__link">
+                <Link
+                  role="menuitem"
+                  to="https://mintify.xyz/base/0x8d933e1c14e8e5ed695aedb7b8d2808e5e0f0d80"
+                  onClick={onClose}
+                  className="submenu__link"
+                >
                   <img src={mintify} alt="" /> Mintify
                 </Link>
               </li>
               <li role="none">
-                <Link role="menuitem" to="/team" onClick={onClose} className="submenu__link">
+                <Link
+                  role="menuitem"
+                  to="https://magiceden.io/collections/base/official-gamegpt-nft"
+                  onClick={onClose}
+                  className="submenu__link"
+                >
                   <img src={magic} alt="" /> Magic Eden
                 </Link>
               </li>
             </ul>
           </li>
-          <li className={`nav__item has-submenu ${expanded.learn ? "is-expanded" : ""}`}>
+          <li
+            className={`nav__item has-submenu ${
+              expanded.learn ? "is-expanded" : ""
+            }`}
+          >
             <Link
               to="/docs"
               onClick={(e) => {
@@ -148,38 +197,72 @@ export default function Nav({ open, onClose }) {
             </Link>
             <ul className="submenu" role="menu" aria-label="Other links">
               <li role="none">
-                <Link role="menuitem" to="/docs" onClick={onClose} className="submenu__link">
+                <Link
+                  role="menuitem"
+                  to="https://www.prism.ai/"
+                  onClick={onClose}
+                  className="submenu__link"
+                >
                   <img src={prism} alt="" /> Prism
                 </Link>
               </li>
               <li role="none">
-                <Link role="menuitem" to="/tokenomics" onClick={onClose} className="submenu__link">
+                <Link
+                  role="menuitem"
+                  to="https://gamegpt.home.prism.ai/"
+                  onClick={onClose}
+                  className="submenu__link"
+                >
                   <img src={prism} alt="" /> GameGPT
                 </Link>
               </li>
               <li role="none">
-                <Link role="menuitem" to="/team" onClick={onClose} className="submenu__link">
+                <Link
+                  role="menuitem"
+                  to="https://nft.prism.ai/"
+                  onClick={onClose}
+                  className="submenu__link"
+                >
                   <img src={nftt} alt="" /> NFT
                 </Link>
               </li>
               <li role="none">
-                <Link role="menuitem" to="/team" onClick={onClose} className="submenu__link">
+                <Link
+                  role="menuitem"
+                  to="https://prism-whitepaper.gitbook.io/prism-whitepaper/"
+                  onClick={onClose}
+                  className="submenu__link"
+                >
                   <img src={whitelist} alt="" /> Whitepaper
                 </Link>
               </li>
               <li role="none">
-                <Link role="menuitem" to="/team" onClick={onClose} className="submenu__link">
+                <Link
+                  role="menuitem"
+                  to="https://gamegpt.origins.prism.ai/"
+                  onClick={onClose}
+                  className="submenu__link"
+                >
                   <img src={gptLore} alt="" /> GameGPT Lore
                 </Link>
               </li>
               <li role="none">
-                <Link role="menuitem" to="/team" onClick={onClose} className="submenu__link">
+                <Link
+                  role="menuitem"
+                  to="https://roadmap.prism.ai/"
+                  onClick={onClose}
+                  className="submenu__link"
+                >
                   <img src={roudmap} alt="" /> Roadmap
                 </Link>
               </li>
             </ul>
           </li>
-          <li className={`nav__item has-submenu ${expanded.other ? "is-expanded" : ""}`}>
+          <li
+            className={`nav__item has-submenu ${
+              expanded.other ? "is-expanded" : ""
+            }`}
+          >
             <Link
               to="/bridge"
               onClick={(e) => {
@@ -197,22 +280,42 @@ export default function Nav({ open, onClose }) {
             </Link>
             <ul className="submenu" role="menu" aria-label="Other links">
               <li role="none">
-                <Link role="menuitem" to="/docs" onClick={onClose} className="submenu__link">
+                <Link
+                  role="menuitem"
+                  to="https://dashboard.prism.ai/bridge"
+                  onClick={onClose}
+                  className="submenu__link"
+                >
                   <img src={bridgeIcon} alt="" /> Bridge
                 </Link>
               </li>
               <li role="none">
-                <Link role="menuitem" to="/tokenomics" onClick={onClose} className="submenu__link">
+                <Link
+                  role="menuitem"
+                  to="https://nft.prism.ai/stake"
+                  onClick={onClose}
+                  className="submenu__link"
+                >
                   <img src={nftstaking} alt="" /> NFT Staking
                 </Link>
               </li>
               <li role="none">
-                <Link role="menuitem" to="/team" onClick={onClose} className="submenu__link">
+                <Link
+                  role="menuitem"
+                  to="https://claims.prism.ai/"
+                  onClick={onClose}
+                  className="submenu__link"
+                >
                   <img src={claimReward} alt="" /> Claim Reward
                 </Link>
               </li>
               <li role="none">
-                <Link role="menuitem" to="/team" onClick={onClose} className="submenu__link">
+                <Link
+                  role="menuitem"
+                  to="https://nft.prism.ai/mystakes"
+                  onClick={onClose}
+                  className="submenu__link"
+                >
                   <img src={nftLevel} alt="" /> NFT Level Up
                 </Link>
               </li>
@@ -220,15 +323,12 @@ export default function Nav({ open, onClose }) {
           </li>
         </ul>
         {/* Mobile-only social actions inside menu */}
-        <div className="nav__social-wrap">
-          <SocialLinks links={socialLinks} />
-          <ul className="nav__social" role="list">
-            <li>
-              <button className="connect-button" onClick={onClose}>Connect</button>
-            </li>
-          </ul>
-        </div>
+        {isMobile && (
+          <button className="connect-button" onClick={onClose}>
+            Connect
+          </button>
+        )}
       </div>
     </nav>
   );
-} 
+}

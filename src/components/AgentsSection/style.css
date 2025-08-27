@@ -95,10 +95,22 @@ span {
   }
 
   .agent-text {
-    padding-inline: 12px;
+    padding-inline: 32px;
+    gap: 30px;
+  }
+
+  .agent-text > div img {
+    width: 85px;
   }
 
   .agent-text > div span {
     font-size: 18px;
+  }
+
+  .agent-text > div {
+    border: 1px solid #4b4b4b;
+    border-radius: 40px;
+    padding-bottom: 30px;
+    padding-top: 20px;
   }
 }

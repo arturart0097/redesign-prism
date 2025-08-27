@@ -1,32 +1,38 @@
 .whitepaper_wrapper {
   display: flex;
+  flex-wrap: wrap;                          /* дозволяємо перенос */
   justify-content: center;
   align-items: center;
-  gap: 50px;
-  flex-wrap: wrap;
+  gap: clamp(16px, 5vw, 50px);              /* плавний проміжок */
 }
 
 .whitepaper_wrapper > img {
-  width: 195px;
+  width: clamp(90px, 20vw, 195px);          /* плавне зменшення від 195px */
+  height: auto;
+  max-width: 100%;
+  flex: 0 1 auto;
 }
 
+/* секція */
 .whitepaperBg {
   background-image: url("../../assets/bg/bg3.png");
   background-position-y: -100px;
   background-size: cover;
   background-repeat: no-repeat;
-  padding: 70px;
+  padding: clamp(24px, 6vw, 70px);          /* плавна відстань всередині */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 60px;    
+  gap: clamp(24px, 6vw, 60px);              /* плавний відступ між елементами */
+  text-align: center;
 }
 
+/* кнопка теж піджимається на вузьких екранах */
 .whitepaperBg > button {
   display: flex;
-  width: 200px;
-  padding: 16px 32px;
+  width: min(200px, 70vw);
+  padding: clamp(10px, 2.5vw, 16px) clamp(16px, 4vw, 32px);
   justify-content: center;
   align-items: center;
   gap: 4px;
@@ -35,12 +41,17 @@
   border: none;
   color: var(--100, #fff);
   text-align: center;
-
-  /* Prism/Button */
-  font-family: Outfit;
-  font-size: 16px;
+  font-family: Outfit, system-ui, sans-serif;
+  font-size: clamp(12px, 2.5vw, 16px);
   font-style: normal;
   font-weight: 500;
-  line-height: 24px; /* 150% */
+  line-height: 1.5;
   text-transform: uppercase;
+}
+
+/* додаткове підтискання для дуже вузьких */
+@media (max-width: 420px) {
+  .whitepaper_wrapper > img {
+    width: clamp(80px, 40vw, 140px);
+  }
 }
