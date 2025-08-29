@@ -88,11 +88,11 @@ a {
   text-decoration: none;
   transition: color 0.2s ease;
 }
-a:hover,
+/* a:hover,
 a:focus-visible {
   color: hsl(var(--accent-hover));
   outline: none;
-}
+} */
 
 /* --- Headings --- */
 :where(h1, h2, h3) {
@@ -146,9 +146,9 @@ li {
   left: -40px;
   width: calc(100% + 80px);
   height: 130px;
-  background: hsl(var(--bg));
+  background: #000;
   /* перф: менший blur + will-change для композитингу */
-  filter: blur(16px);
+  filter: blur(10px);
   will-change: filter;
   z-index: 1;
 }

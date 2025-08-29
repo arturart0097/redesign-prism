@@ -95,14 +95,15 @@
 @media (max-width: 480px) {
   .products-wrapper {
     padding: 64px 12px 40px;
-    background-position-y: -20px;
+    background-position-y: 5px;
+    background-position-x: left;
   }
 
-  .products-wrapper::before {
+  /* .products-wrapper::before {
     top: 10px;
     background-position-y: 40px;
     z-index: 0;
-  }
+  } */
 
   .products {
     gap: 12px;
@@ -111,6 +112,10 @@
     border-radius: 18px;
     padding: 16px 18px;
     width: 20%;
+  }
+
+  .products-video > h2 {
+    font-size: 12px;
   }
 }
 

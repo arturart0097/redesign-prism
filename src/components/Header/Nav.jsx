@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import arrow from "../../assets/icons/arrow.svg";
 import bridgeIcon from "../../assets/images/bridgeIcons.png";
 import claimReward from "../../assets/images/claimReward.png";
@@ -19,24 +18,64 @@ import mexc from "../../assets/images/mexc.png";
 import opensea from "../../assets/images/opensea.png";
 import mintify from "../../assets/images/mintify.png";
 import magic from "../../assets/images/magic.png";
-import { useMobile } from "@/hooks/useMobile";
+import { Link } from "react-router-dom";
 
 export default function Nav({ open, onClose }) {
-  const { isMobile } = useMobile();
+  const [isMobile, setIsMobile] = useState(false);
   const [expanded, setExpanded] = useState({
     duel: false,
     nfts: false,
     learn: false,
     other: false,
   });
+  const navRef = useRef(null);
+
+  useEffect(() => {
+    const update = () => setIsMobile(window.innerWidth <= 900);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   const toggle = (key) => {
-    if (!isMobile) return;
     setExpanded((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      const targetNode = event.target;
+      const navElement = navRef.current;
+      if (!navElement || !targetNode) return;
+
+      const expandedItems = Array.from(
+        navElement.querySelectorAll(
+          ".nav__item.has-submenu.is-expanded"
+        )
+      );
+
+      const clickInsideExpanded = expandedItems.some((li) =>
+        li.contains(targetNode)
+      );
+
+      if (!clickInsideExpanded) {
+        setExpanded({ duel: false, nfts: false, learn: false, other: false });
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("touchstart", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("touchstart", handleOutsideClick);
+    };
+  }, []);
+
   return (
-    <nav id="primary-nav" className={`header__nav ${open ? "is-open" : ""}`}>
+    <nav
+      ref={navRef}
+      id="primary-nav"
+      className={`header__nav ${open ? "is-open" : ""}`}
+    >
       <div className="nav__inner">
         <ul className="nav__list" role="list">
           <li
@@ -45,80 +84,89 @@ export default function Nav({ open, onClose }) {
             }`}
           >
             <Link
-              to="/duel"
+              to="#"
               onClick={(e) => {
-                if (isMobile) {
-                  e.preventDefault();
-                  toggle("duel");
-                } else {
-                  onClose();
-                }
+                e.preventDefault();
+                e.stopPropagation();
+                toggle("duel");
               }}
-              aria-expanded={isMobile ? expanded.duel : undefined}
+              aria-expanded={expanded.duel}
               className="nav__link"
             >
               Trade DUEL <img src={arrow} alt="navArrow" />
             </Link>
             <ul className="submenu" role="menu" aria-label="Other links">
               <li role="none">
-                <Link
+                <a
                   role="menuitem"
-                  to="https://app.uniswap.org/explore"
+                  href="https://app.uniswap.org/explore"
                   onClick={onClose}
                   className="submenu__link"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <img src={eth} alt="" /> $DUEL (ETH)
-                </Link>
+                </a>
               </li>
               <li role="none">
-                <Link
+                <a
                   role="menuitem"
-                  to="https://www.bybit.com/en/trade/spot/DUEL/USDT"
+                  href="https://www.bybit.com/en/trade/spot/DUEL/USDT"
                   onClick={onClose}
                   className="submenu__link"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <img src={bybit} alt="" /> $DUEL ByBit
-                </Link>
+                </a>
               </li>
               <li role="none">
-                <Link
+                <a
                   role="menuitem"
-                  to="https://pancakeswap.finance/swap?outputCurrency=0xa1ED0bD9A4776830c5b7bA004F26427b71152CA5"
+                  href="https://pancakeswap.finance/swap?outputCurrency=0xa1ED0bD9A4776830c5b7bA004F26427b71152CA5"
                   onClick={onClose}
                   className="submenu__link"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <img src={bcd} alt="" /> $DUEL (BSC)
-                </Link>
+                </a>
               </li>
               <li role="none">
-                <Link
+                <a
                   role="menuitem"
-                  to="https://www.gate.io/trade/DUEL_USDT"
+                  href="https://www.gate.io/trade/DUEL_USDT"
                   onClick={onClose}
                   className="submenu__link"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <img src={gate} alt="" /> $DUEL Gate
-                </Link>
+                </a>
               </li>
               <li role="none">
-                <Link
+                <a
                   role="menuitem"
-                  to="https://app.uniswap.org/explore/tokens/base/0x16f1759fabbcc66d3f21eb8e4ad0d75b83a804e1"
+                  href="https://app.uniswap.org/explore/tokens/base/0x16f1759fabbcc66d3f21eb8e4ad0d75b83a804e1"
                   onClick={onClose}
                   className="submenu__link"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <img src={abse} alt="" /> $DUEL (Base)
-                </Link>
+                </a>
               </li>
               <li role="none">
-                <Link
+                <a
                   role="menuitem"
-                  to="https://www.mexc.com/exchange/DUEL_USDT"
+                  href="https://www.mexc.com/exchange/DUEL_USDT"
                   onClick={onClose}
                   className="submenu__link"
+                  target="_Blank"
+                  rel="noopener noreferrer"
                 >
                   <img src={mexc} alt="" /> $DUEL MEXC
-                </Link>
+                </a>
               </li>
             </ul>
           </li>
@@ -128,50 +176,53 @@ export default function Nav({ open, onClose }) {
             }`}
           >
             <Link
-              to="/team"
+              to="#"
               onClick={(e) => {
-                if (isMobile) {
-                  e.preventDefault();
-                  toggle("nfts");
-                } else {
-                  onClose();
-                }
+                e.preventDefault();
+                e.stopPropagation();
+                toggle("nfts");
               }}
-              aria-expanded={isMobile ? expanded.nfts : undefined}
+              aria-expanded={expanded.nfts}
               className="nav__link"
             >
               Trade NFTs <img src={arrow} alt="navArrow" />
             </Link>
             <ul className="submenu" role="menu" aria-label="Other links">
               <li role="none">
-                <Link
+                <a
                   role="menuitem"
-                  to="https://opensea.io/collection/official-gamegpt-nft"
+                  href="https://opensea.io/collection/official-gamegpt-nft"
                   onClick={onClose}
                   className="submenu__link"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <img src={opensea} alt="" /> Opensea
-                </Link>
+                </a>
               </li>
               <li role="none">
-                <Link
+                <a
                   role="menuitem"
-                  to="https://mintify.xyz/base/0x8d933e1c14e8e5ed695aedb7b8d2808e5e0f0d80"
+                  href="https://mintify.xyz/base/0x8d933e1c14e8e5ed695aedb7b8d2808e5e0f0d80"
                   onClick={onClose}
                   className="submenu__link"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <img src={mintify} alt="" /> Mintify
-                </Link>
+                </a>
               </li>
               <li role="none">
-                <Link
+                <a
                   role="menuitem"
-                  to="https://magiceden.io/collections/base/official-gamegpt-nft"
+                  href="https://magiceden.io/collections/base/official-gamegpt-nft"
                   onClick={onClose}
                   className="submenu__link"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <img src={magic} alt="" /> Magic Eden
-                </Link>
+                </a>
               </li>
             </ul>
           </li>
@@ -181,80 +232,89 @@ export default function Nav({ open, onClose }) {
             }`}
           >
             <Link
-              to="/docs"
+              to="#"
               onClick={(e) => {
-                if (isMobile) {
-                  e.preventDefault();
-                  toggle("learn");
-                } else {
-                  onClose();
-                }
+                e.preventDefault();
+                e.stopPropagation();
+                toggle("learn");
               }}
-              aria-expanded={isMobile ? expanded.learn : undefined}
+              aria-expanded={expanded.learn}
               className="nav__link"
             >
               Learn More <img src={arrow} alt="navArrow" />
             </Link>
             <ul className="submenu" role="menu" aria-label="Other links">
               <li role="none">
-                <Link
+                <a
                   role="menuitem"
-                  to="https://www.prism.ai/"
+                  href="https://www.prism.ai/"
                   onClick={onClose}
                   className="submenu__link"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <img src={prism} alt="" /> Prism
-                </Link>
+                </a>
               </li>
               <li role="none">
-                <Link
+                <a
                   role="menuitem"
-                  to="https://gamegpt.home.prism.ai/"
+                  href="https://gamegpt.home.prism.ai/"
                   onClick={onClose}
                   className="submenu__link"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <img src={prism} alt="" /> GameGPT
-                </Link>
+                </a>
               </li>
               <li role="none">
-                <Link
+                <a
                   role="menuitem"
-                  to="https://nft.prism.ai/"
+                  href="https://nft.prism.ai/"
                   onClick={onClose}
                   className="submenu__link"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <img src={nftt} alt="" /> NFT
-                </Link>
+                </a>
               </li>
               <li role="none">
-                <Link
+                <a
                   role="menuitem"
-                  to="https://prism-whitepaper.gitbook.io/prism-whitepaper/"
+                  href="https://prism-whitepaper.gitbook.io/prism-whitepaper/"
                   onClick={onClose}
                   className="submenu__link"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <img src={whitelist} alt="" /> Whitepaper
-                </Link>
+                </a>
               </li>
               <li role="none">
-                <Link
+                <a
                   role="menuitem"
-                  to="https://gamegpt.origins.prism.ai/"
+                  href="https://gamegpt.origins.prism.ai/"
                   onClick={onClose}
                   className="submenu__link"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <img src={gptLore} alt="" /> GameGPT Lore
-                </Link>
+                </a>
               </li>
               <li role="none">
-                <Link
+                <a
                   role="menuitem"
-                  to="https://roadmap.prism.ai/"
+                  href="https://roadmap.prism.ai/"
                   onClick={onClose}
                   className="submenu__link"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <img src={roudmap} alt="" /> Roadmap
-                </Link>
+                </a>
               </li>
             </ul>
           </li>
@@ -264,60 +324,65 @@ export default function Nav({ open, onClose }) {
             }`}
           >
             <Link
-              to="/bridge"
+              to="#"
               onClick={(e) => {
-                if (isMobile) {
-                  e.preventDefault();
-                  toggle("other");
-                } else {
-                  onClose();
-                }
+                e.preventDefault();
+                e.stopPropagation();
+                toggle("other");
               }}
-              aria-expanded={isMobile ? expanded.other : undefined}
+              aria-expanded={expanded.other}
               className="nav__link"
             >
               Other <img src={arrow} alt="navArrow" />
             </Link>
             <ul className="submenu" role="menu" aria-label="Other links">
               <li role="none">
-                <Link
+                <a
                   role="menuitem"
-                  to="https://dashboard.prism.ai/bridge"
+                  href="https://dashboard.prism.ai/bridge"
                   onClick={onClose}
                   className="submenu__link"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <img src={bridgeIcon} alt="" /> Bridge
-                </Link>
+                </a>
               </li>
               <li role="none">
-                <Link
+                <a
                   role="menuitem"
-                  to="https://nft.prism.ai/stake"
+                  href="https://nft.prism.ai/stake"
                   onClick={onClose}
                   className="submenu__link"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <img src={nftstaking} alt="" /> NFT Staking
-                </Link>
+                </a>
               </li>
               <li role="none">
-                <Link
+                <a
                   role="menuitem"
-                  to="https://claims.prism.ai/"
+                  href="https://claims.prism.ai/"
                   onClick={onClose}
                   className="submenu__link"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <img src={claimReward} alt="" /> Claim Reward
-                </Link>
+                </a>
               </li>
               <li role="none">
-                <Link
+                <a
                   role="menuitem"
-                  to="https://nft.prism.ai/mystakes"
+                  href="https://nft.prism.ai/mystakes"
                   onClick={onClose}
                   className="submenu__link"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <img src={nftLevel} alt="" /> NFT Level Up
-                </Link>
+                </a>
               </li>
             </ul>
           </li>

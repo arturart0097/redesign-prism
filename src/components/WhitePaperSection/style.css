@@ -1,13 +1,12 @@
 .whitepaper_wrapper {
   display: flex;
-  flex-wrap: wrap;                          /* дозволяємо перенос */
   justify-content: center;
   align-items: center;
-  gap: clamp(16px, 5vw, 50px);              /* плавний проміжок */
+  gap: clamp(16px, 5vw, 50px); /* плавний проміжок */
 }
 
 .whitepaper_wrapper > img {
-  width: clamp(90px, 20vw, 195px);          /* плавне зменшення від 195px */
+  width: clamp(90px, 20vw, 195px); /* плавне зменшення від 195px */
   height: auto;
   max-width: 100%;
   flex: 0 1 auto;
@@ -19,12 +18,12 @@
   background-position-y: -100px;
   background-size: cover;
   background-repeat: no-repeat;
-  padding: clamp(24px, 6vw, 70px);          /* плавна відстань всередині */
+  padding: clamp(24px, 6vw, 70px); /* плавна відстань всередині */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: clamp(24px, 6vw, 60px);              /* плавний відступ між елементами */
+  gap: clamp(24px, 6vw, 60px); /* плавний відступ між елементами */
   text-align: center;
 }
 
@@ -52,6 +51,12 @@
 /* додаткове підтискання для дуже вузьких */
 @media (max-width: 420px) {
   .whitepaper_wrapper > img {
-    width: clamp(80px, 40vw, 140px);
+    width: 20%;
+    display: flex;
+  }
+
+  .whitepaperBg {
+    padding-top: 70px;
+    background-position-y: -15px;
   }
 }

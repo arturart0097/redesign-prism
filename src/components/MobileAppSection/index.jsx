@@ -25,7 +25,7 @@ export const MobileAppSection = () => {
           Coming soon to <img src={appstore} alt="" /> and
           <img src={playmarket} alt="" />
         </p>
-        <img src={iphon} alt="" />
+        <img className="iphon" src={iphon} alt="" />
       </div>
 
       <div

@@ -1,17 +1,23 @@
 import { useEffect, useState } from "react";
 import "./style.css";
 
-import Logo from "./Logo.jsx";
-import Burger from "./Burger.jsx";
-import Nav from "./Nav.jsx";
+import Logo from "./Logo";
+import Burger from "./Burger";
+import Nav from "./Nav";
+import { socialLinks } from "../../entities/socialLinks";
 import { SocialLinks } from "../UI/SocialLinks";
-import { socialLinks } from "@/entities/socialLinks";
-import { useMobile } from "@/hooks/useMobile";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
-  const { isMobile } = useMobile();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const update = () => setIsMobile(window.innerWidth <= 900);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   return (
     <header className="site-header">
@@ -43,7 +49,10 @@ export default function Header() {
                 <SocialLinks
                   links={socialLinks}
                   style={{
-                    gap: 7,
+                    width: 140,
+                  }}
+                  styleImg={{
+                    width: isMobile ? 34 : 84,
                   }}
                 />
               )}
@@ -52,7 +61,7 @@ export default function Header() {
           </div>
         </div>
         <div className="header__left">
-          <SocialLinks links={socialLinks} />
+          <SocialLinks links={socialLinks} style={{}} />
           <ul className="nav__social" role="list">
             <li>
               <button className="connect-button">Connect</button>

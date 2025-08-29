@@ -14,7 +14,7 @@ export const OurProducts = () => {
         className="blur-row"
         style={{
           position: "relative",
-          top: 25,
+          top: isMobile ? 30 : 30,
           height: isMobile ? 50 : "",
         }}
       />

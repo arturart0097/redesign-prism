@@ -16,11 +16,11 @@ export const GameGptSection = () => {
         className="blur-row"
         style={{
           position: "relative",
-          top: 20,
-          height: 100,
+          top: isMobile ? 34 : 20,
+          height: isMobile ? 50 : 100,
         }}
       />
-      <div className="gameBuilder-section">
+      <div className="gameBuilder-section">∂
         <h3>AI-Driven Game Builder</h3>
         <p>Create your game with the input of a few simple prompts</p>
         <div className="gameCard-wrapper">

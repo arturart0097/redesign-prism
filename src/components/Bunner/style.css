@@ -136,6 +136,10 @@
     margin: 10px;
   }
 
+  .bunner_wrapper h1 {
+    font-size: 24px !important;
+  }
+
   .integrates {
     margin-top: 40px;
     gap: 12px;
@@ -163,7 +167,19 @@
   }
 
   .integrates img {
-    max-height: 50px;
+    width: 250px;
+  }
+
+  .video-wrapper video {
+    width: 80%;
+  }
+
+  .video-wrapper > h2 {
+    font-size: 20px !important;
+  }
+
+  .video-wrapper > p {
+    font-size: 16px;
   }
 }
 

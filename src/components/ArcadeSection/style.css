@@ -56,6 +56,20 @@
   cursor: pointer;
 }
 
+.try {
+  display: flex;
+  width: 227px;
+  padding: 16px 32px;
+  margin: 50px auto;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border-radius: 30px;
+  border: none;
+  background: var(--900, #1a1b1f);
+  cursor: pointer;
+}
+
 .video-laptop {
   background-image: url("../../assets/images/laptop.png");
   width: 45%;
@@ -81,6 +95,12 @@
 }
 
 /* Responsive */
+@media (max-width: 1600px) {
+  .arcadeSections-wrapper::before {
+    content: none;
+  }
+}
+
 @media (max-width: 1200px) {
   .arcadeSections-wrapper {
     padding-left: 12rem;
@@ -170,15 +190,17 @@
   .arcadeSections-wrapper {
     padding-top: 60px;
     gap: 12px;
-    background-position: center;
+    background-position: left;
+    background-position-y: -150px;
   }
 
   .arcade-video > img {
-    width: 180px;
+    width: 130px;
   }
 
   .text-button h2 {
-    font-size: 26px;
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
   .text-button > button {
@@ -188,7 +210,6 @@
   }
 
   .video-laptop {
-    height: 500px;
     background-position: center;
     background-size: 90%;
     background-repeat: no-repeat;
