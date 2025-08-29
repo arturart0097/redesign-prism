@@ -5,13 +5,13 @@ import YouTubeIcon from "@/assets/icons/youTube.svg";
 import Discord from "@/assets/icons/discord.svg";
 
 export const socialLinks = [
-    { icon: Tg, alt: "telegram", href: "https://t.me/yourchannel" },
+    { icon: Tg, alt: "telegram", href: "https://t.me/gamegptANN" },
     // { icon: Tg2, alt: "telegram2", href: "https://t.me/yourchannel2" },
-    { icon: X, alt: "x", href: "https://x.com/yourprofile" },
-    { icon: YouTubeIcon, alt: "youtube", href: "https://youtube.com/yourchannel" },
+    { icon: X, alt: "x", href: "https://x.com/gamegptofficial" },
+    { icon: YouTubeIcon, alt: "youtube", href: "https://www.youtube.com/@gamegpt_prism" },
     {
         icon: Discord,
         alt: "discord",
-        href: "https://discord.com/invite/yourinvite",
+        href: "https://discord.com/invite/gamegpt",
     },
 ];

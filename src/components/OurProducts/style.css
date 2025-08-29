@@ -1,52 +1,164 @@
+/* === OurProducts — adaptive CSS === */
+
 .products-wrapper {
-  background: url("../../assets/bg/bg3.png") center -300px / cover no-repeat;
-  height: 700px;
-  padding-top: 150px;
+  /* мобайл-first: авто-висота замість fixed 700px */
+  background: url("../../assets/bg/bg3.png") center / cover no-repeat;
+  padding: 80px 16px 40px;
   position: relative;
 }
 
+/* блюр-фон під секцією, прив’язуємо до низу, щоб не залежати від контенту */
 .products-wrapper::before {
   content: "";
   position: absolute;
   left: 0;
   right: 0;
-  top: 440px;
-  height: 400px;
+  bottom: 240px;
+  height: 380px;
   background: url("../../assets/bg/bg2.png") center -450px / cover no-repeat;
-  z-index: 0;
   filter: blur(25px);
-  inset: 1;
+  z-index: 0;
+  pointer-events: none;
 }
 
+.products-wrapper h2 {
+  z-index: 10;
+  position: relative;
+}
+
+/* cards layout: grid з auto-fit */
 .products {
+  position: relative;
+  z-index: 1;
+  /* display: grid; */
+  /* grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); */
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+  /* justify-items: center; */
 }
 
+/* card */
 .products-video {
-  margin-top: 50px;
-  border: 1px solid red;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding: 20px 18px;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  height: 364px;
-  border-radius: 40px;
+  align-items: center;
+  gap: 12px;
+  border-radius: 24px;
   border: 1px solid #222222ed;
   background: rgba(0, 0, 0, 0.4);
   box-shadow: 0 776px 217px 0 rgba(0, 0, 0, 0),
     0 497px 199px 0 rgba(0, 0, 0, 0.01), 0 279px 168px 0 rgba(0, 0, 0, 0.05),
     0 124px 124px 0 rgba(0, 0, 0, 0.09), 0 31px 68px 0 rgba(0, 0, 0, 0.1);
-  z-index: 1;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-.products-video > video {
-  width: 55%;
+/* прибираємо debug-рамку та жорсткі розміри */
+.products-video {
+  margin-top: 20px; /* було 50px */
+  /* height: 364px;        /* не фіксуємо висоту */
+  /* border: 1px solid red;/* debug off */
 }
+
+.products-video:hover,
+.products-video:focus-within {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
+/* video — fluid + стабільний лейаут */
+.products-video > video {
+  width: 100%;
+  max-width: 520px;
+  display: block;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* заголовок під відео (в тебе це h2 всередині картки — норм) */
 .products-video h2 {
+  margin: 4px 0 0;
   text-transform: uppercase;
+  font-size: clamp(14px, 1.6vw, 18px);
+  letter-spacing: 0.08em;
+  opacity: 0.9;
+  text-align: center;
+}
+
+/* вузькі екрани */
+@media (max-width: 480px) {
+  .products-wrapper {
+    padding: 64px 12px 40px;
+    background-position-y: 5px;
+    background-position-x: left;
+  }
+
+  /* .products-wrapper::before {
+    top: 10px;
+    background-position-y: 40px;
+    z-index: 0;
+  } */
+
+  .products {
+    gap: 12px;
+  }
+  .products-video {
+    border-radius: 18px;
+    padding: 16px 18px;
+    width: 20%;
+  }
+
+  .products-video > h2 {
+    font-size: 12px;
+  }
+}
+
+/* планшети */
+@media (min-width: 768px) {
+  .products {
+    gap: 18px;
+  }
+  .products-wrapper {
+    padding-top: 100px;
+    background-position: center -240px;
+  }
+}
+
+/* десктопи */
+@media (min-width: 1024px) {
+  .products {
+    gap: 20px;
+  }
+  .products-wrapper {
+    padding-top: 140px;
+    padding-bottom: 80px;
+    background-position: center -300px;
+  }
+  .products-wrapper::before {
+    bottom: -180px;
+    height: 420px;
+  }
+}
+
+/* великі */
+@media (min-width: 1280px) {
+  .products {
+    max-width: 1280px;
+  }
+}
+
+/* а11y: якщо користувач не хоче анімацій */
+@media (prefers-reduced-motion: reduce) {
+  .products-video > video {
+    animation: none !important;
+  }
+  .products-video {
+    transition: none;
+  }
 }

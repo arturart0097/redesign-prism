@@ -4,5 +4,32 @@
   background-position-y: -270px;
   background-repeat: no-repeat;
   background-size: cover;
+  background-position-x: center;
 }
 
+@media (max-width: 1200px) {
+  .bunner-header_wrapper {
+    background-position-y: -180px;
+  }
+}
+
+@media (max-width: 992px) {
+  .bunner-header_wrapper {
+    background-position-y: -100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bunner-header_wrapper {
+    background-image: url("../../assets/bg/headerBg.jpg");
+    background-position: center top;
+    background-size: cover;
+  }
+}
+
+@media (max-width: 480px) {
+  .bunner-header_wrapper {
+    background-position: top;
+    background-position-y: -100px;
+  }
+}

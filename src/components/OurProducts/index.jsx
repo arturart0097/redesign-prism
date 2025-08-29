@@ -3,15 +3,19 @@ import "./style.css";
 import agents from "@/assets/videos/Agents.mp4";
 import Arcade from "@/assets/videos/Arcade.mp4";
 import GameGPT from "@/assets/videos/GameGPT.mp4";
+import { useMobile } from "@/hooks/useMobile";
 
 export const OurProducts = () => {
+  const { isMobile } = useMobile();
+
   return (
     <>
       <div
         className="blur-row"
         style={{
           position: "relative",
-          top: 40,
+          top: isMobile ? 30 : 30,
+          height: isMobile ? 50 : "",
         }}
       />
       <div className="products-wrapper">
@@ -51,11 +55,7 @@ export const OurProducts = () => {
             <h2>arcade</h2>
           </div>
         </div>
-        <div className="bunner-bg2"></div>
       </div>
-      <div className="blur-row" style={{
-        height: 30
-      }} />
     </>
   );
 };

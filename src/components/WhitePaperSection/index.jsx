@@ -4,16 +4,21 @@ import arcadepaper from "@/assets/images/arcadepaper.png";
 import gamepaper from "@/assets/images/gamepaper.png";
 
 import "./style.css";
+import { useMobile } from "@/hooks/useMobile";
 
 export const WhitePaperSection = () => {
+  const { isMobile } = useMobile();
+
   return (
-    <>
+    <div style={{
+      marginTop: -100
+    }}>
       <div
         className="blur-row"
         style={{
           position: "relative",
-          top: 35,
-          height: 70,
+          top: isMobile ? 25 : 35,
+          height: isMobile ? 50 : 70,
         }}
       />
 
@@ -27,6 +32,6 @@ export const WhitePaperSection = () => {
         </div>
         <button>READ IT</button>
       </div>
-    </>
+    </div>
   );
 };

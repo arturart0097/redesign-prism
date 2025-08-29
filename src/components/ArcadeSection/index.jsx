@@ -3,16 +3,20 @@ import video from "@/assets/videos/laptop.mp4";
 
 import "./style.css";
 import GameCarousel from "../GameCarousel";
+import { useMobile } from "@/hooks/useMobile";
 
 export const ArcadeSections = () => {
+  const { isMobile } = useMobile();
+
   return (
     <>
       <div
         className="blur-row"
         style={{
           position: "relative",
-          top: 30,
-          height: 60,
+          top: isMobile ? 20 : 30,
+          height: isMobile ? 50 : 60,
+          filter: "blur(5px)"
         }}
       />
       <div className="arcadeSections-wrapper">
@@ -20,10 +24,11 @@ export const ArcadeSections = () => {
           <div className="arcade-video">
             <div className="text-button">
               <h2>Arcade</h2>
-              <button>Try the beta</button>
+              {!isMobile && <button>Try the beta</button>}
             </div>
             <img src={arcade} />
           </div>
+          {isMobile && <button className="try">Try the beta</button>}
         </div>
         <div className="video-laptop">
           <video src={video} autoPlay muted loop playsInline />
@@ -37,8 +42,8 @@ export const ArcadeSections = () => {
         className="blur-row"
         style={{
           position: "relative",
-          top: 20,
-          height: 60,
+          top: isMobile ? -20 : 70,
+          height: isMobile ? 40 : 60,
         }}
       />
     </>

@@ -1,21 +1,76 @@
+/* style.css — adaptive for SocialSection */
+
 .socialSection_wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 25rem;
+  /* мобайл-first: одна колонка */
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-items: start;
   text-align: center;
+  row-gap: 28px;
+  column-gap: clamp(24px, 6vw, 160px); /* заміна 25rem на адаптивний */
+  padding: 0 12px;
 }
 
-.socialSection_wrapper img {
-  width: 58px;
-  height: 58px;
-  border-radius: 100%;
+/* з 560px — дві колонки, далі авто-fit */
+@media (min-width: 560px) {
+  .socialSection_wrapper {
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+  }
 }
 
+@media (min-width: 960px) {
+  .socialSection_wrapper {
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+  }
+}
+
+.socialSection_wrapper h3 {
+  margin: 0 0 8px;
+  font-size: clamp(16px, 2.2vw, 24px);
+  letter-spacing: 0.06em;
+}
+
+/* ряд іконок */
 .socials-gap {
   display: flex;
+  flex-wrap: wrap;                 /* дозволяємо перенос на вузьких екранах */
   justify-content: center;
   align-items: center;
-  gap: 15px;
-  margin-top: 14px;
+  gap: clamp(8px, 2.5vw, 16px);
+  margin-top: 12px;
+}
+
+/* іконки */
+.socials-gap img {
+  width: clamp(36px, 6vw, 58px);
+  height: clamp(36px, 6vw, 58px);
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+  /* легкий внутрішній обвід для темного фону */
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.08) inset;
+}
+
+/* hover/focus ефекти — якщо обгорнеш у <a>, фокус буде на лінку */
+.socials-gap img:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 18px rgba(0,0,0,0.35),
+    0 0 0 1px rgba(255,255,255,0.12) inset;
+}
+
+/* компактні екрани */
+@media (max-width: 380px) {
+  .socials-gap {
+    gap: 8px;
+  }
+}
+
+/* reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .socials-gap img {
+    transition: none;
+  }
 }

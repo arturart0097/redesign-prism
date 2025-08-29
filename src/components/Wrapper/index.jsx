@@ -3,7 +3,6 @@ import { Bunner } from "../Bunner";
 import { GameGptSection } from "../GameGptSection";
 import Header from "../Header";
 import { OurProducts } from "../OurProducts";
-import GameCarousel from "../GameCarousel";
 import "./style.css";
 import { AgentsSection } from "../AgentsSection";
 import { SocialSection } from "../SocialsSection";

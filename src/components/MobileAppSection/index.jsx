@@ -3,8 +3,11 @@ import playmarket from "@/assets/icons/playmarket.svg";
 import iphon from "@/assets/images/iphon.png";
 
 import "./style.css";
+import { useMobile } from "@/hooks/useMobile";
 
 export const MobileAppSection = () => {
+  const { isMobile } = useMobile();
+
   return (
     <>
       <div
@@ -22,7 +25,7 @@ export const MobileAppSection = () => {
           Coming soon to <img src={appstore} alt="" /> and
           <img src={playmarket} alt="" />
         </p>
-        <img src={iphon} alt="" />
+        <img className="iphon" src={iphon} alt="" />
       </div>
 
       <div
@@ -30,7 +33,7 @@ export const MobileAppSection = () => {
         style={{
           position: "relative",
           top: -50,
-          height: 60,
+          height: isMobile ? 30 : 60,
         }}
       />
     </>
